@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JFileChooser;
@@ -23,15 +24,19 @@ public class App {
             palavra = JOptionPane.showInputDialog(null, "Digite sua palavra:");
             LerArquivo arquivo = new LerArquivo(caminho);
             AlgorCYK algorCYK = new AlgorCYK(palavra, arquivo.ler());
-            System.out.println(algorCYK.getArrGramatica() + " " + Arrays.toString(algorCYK.getArrPalavra()));
-            String escolha = JOptionPane.showInputDialog(null, "O resultado do teste foi:\n" + 
-                                                            "STRING\n" + "Se não desejar fazer outro teste digite a letra 'n', "+ 
-                                                            "caso contrário, qualquer outra letra continuará programa.").toUpperCase();
+            System.out.println(algorCYK.getArrGramatica() + "\n" + Arrays.toString(algorCYK.getArrPalavra()));
+            String escolha = JOptionPane.showInputDialog(null, "O resultado do teste foi:\n\n" + 
+                                                            algorCYK.verificarPalavra() + "\n\n" + "Se não desejar fazer outro teste digite a letra 'n', "+ 
+                                                            "caso contrário, qualquer outra letra continuará o programa.").toUpperCase();
+            System.out.println("\n");
+            System.out.println(Arrays.deepToString(algorCYK.getArrTabelaTestePalavra()));
             if (escolha.equals("N")) {
                 break;
             }
-        }    
+        }
         JOptionPane.showMessageDialog(null, "O programa foi finalizado!", "Finalizado", 1);
+        
+
     }
 
 }
