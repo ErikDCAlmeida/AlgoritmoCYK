@@ -25,11 +25,20 @@ public class App {
             LerArquivo arquivo = new LerArquivo(caminho);
             AlgorCYK algorCYK = new AlgorCYK(palavra, arquivo.ler());
             System.out.println(algorCYK.getArrGramatica() + "\n" + Arrays.toString(algorCYK.getArrPalavra()));
-            String escolha = JOptionPane.showInputDialog(null, "O resultado do teste foi:\n\n" + 
-                                                            algorCYK.verificarPalavra() + "\n\n" + "Se não desejar fazer outro teste digite a letra 'n', "+ 
-                                                            "caso contrário, qualquer outra letra continuará o programa.").toUpperCase();
+
+            boolean resultado = algorCYK.verificarPalavra();
+            String strResultado = "";
+            if (resultado == true) {
+                strResultado = "A palavra pertence a gramática!";
+            } else {
+                strResultado = "A palavra nao pertence a gramática!";
+            }
+            String escolha = JOptionPane.showInputDialog(null, "O resultado do teste foi:\n" + 
+                                                             strResultado + "\n\n" + 
+                                                            "Se não desejar fazer outro teste digite a letra 'n', "+ 
+                                                            "caso contrário, qualquer outra letra ou símbolo continuará o programa.").toUpperCase();
             System.out.println("\n");
-            System.out.println(Arrays.deepToString(algorCYK.getArrTabelaTestePalavra()));
+            System.out.println(Arrays.deepToString(algorCYK.getmatrizTestePalavra()));
             if (escolha.equals("N")) {
                 break;
             }

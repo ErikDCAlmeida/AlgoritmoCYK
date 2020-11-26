@@ -19,6 +19,15 @@ public class Geradores {
         return listaGeradores;
     }
 
+    public boolean contemElemento(String elemento){
+        for (int i = 0; i < this.listaGeradores.size(); i++) {
+            if (this.listaGeradores.get(i).equals(elemento)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
