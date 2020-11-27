@@ -1,0 +1,7 @@
+S => SF
+S => a
+A => CC
+A => SS
+A => CS
+C => b
+F => AS

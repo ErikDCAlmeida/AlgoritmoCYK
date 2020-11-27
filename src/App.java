@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import algoritmocyk.AlgorCYK;
+import algoritmocyk.Geradores;
 import algoritmocyk.LerArquivo;
 
 public class App {
@@ -24,7 +25,7 @@ public class App {
             palavra = JOptionPane.showInputDialog(null, "Digite sua palavra:");
             LerArquivo arquivo = new LerArquivo(caminho);
             AlgorCYK algorCYK = new AlgorCYK(palavra, arquivo.ler());
-            System.out.println(algorCYK.getArrGramatica() + "\n" + Arrays.toString(algorCYK.getArrPalavra()));
+            //System.out.println(algorCYK.getArrGramatica() + "\n" + Arrays.toString(algorCYK.getArrPalavra()));
 
             boolean resultado = algorCYK.verificarPalavra();
             String strResultado = "";
@@ -33,12 +34,26 @@ public class App {
             } else {
                 strResultado = "A palavra nao pertence a gramática!";
             }
-            String escolha = JOptionPane.showInputDialog(null, "O resultado do teste foi:\n" + 
-                                                             strResultado + "\n\n" + 
-                                                            "Se não desejar fazer outro teste digite a letra 'n', "+ 
+            for (int i = 0; i < algorCYK.getmatrizTestePalavra().length; i++) {
+                for (int j = 0; j < algorCYK.getmatrizTestePalavra()[i].length; j++) {
+                    if (j > (algorCYK.getmatrizTestePalavra()[i].length - (i + 1))) {
+                        algorCYK.getmatrizTestePalavra()[i][j] = new Geradores();
+                    }
+                }
+            }
+            StringBuilder stringB = new StringBuilder();
+            for (int i = algorCYK.getmatrizTestePalavra().length - 1; i >= 0; i--) {
+                stringB.append(i).append(": ").append(Arrays.toString(algorCYK.getmatrizTestePalavra()[i])).append("\n");
+            }
+            String escolha = JOptionPane.showInputDialog(null, "O resultado do teste foi:\n\n" +
+                                                            "Resultado: " + strResultado + "\n\n" +
+                                                            "Matriz do seu teste: \n" + stringB +
+                                                            "OBS.: Para entender a matriz, as linhas/colunas que estão com {} podem ser desconsideradas.\n" +
+                                                            "O que está como 'null' são os espaços vazios.\n\n" +
+                                                            "Se não desejar fazer outro teste digite a letra 'n', " +
                                                             "caso contrário, qualquer outra letra ou símbolo continuará o programa.").toUpperCase();
             System.out.println("\n");
-            System.out.println(Arrays.deepToString(algorCYK.getmatrizTestePalavra()));
+            //System.out.println(Arrays.deepToString(algorCYK.getmatrizTestePalavra()));
             if (escolha.equals("N")) {
                 break;
             }
