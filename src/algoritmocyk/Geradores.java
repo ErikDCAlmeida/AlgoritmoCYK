@@ -12,7 +12,9 @@ public class Geradores {
     }
 
     public void adicionarGeradores(String gerador){
-        this.listaGeradores.add(gerador);
+        if (!this.listaGeradores.contains(gerador)) {
+            this.listaGeradores.add(gerador);
+        }
     }
 
     public ArrayList<String> getListaGeradores() {

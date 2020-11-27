@@ -69,17 +69,16 @@ public class AlgorCYK {
         }
         System.out.println("??????Array Teste: " + arrTeste);
         for (int i = 0; i < arrTeste.size(); i++) {
+            Geradores geradores = new Geradores();
             for (int j = 0; j < arrGramatica.size(); j++) {
                 for (int k = 0; k < arrGramatica.get(j).size(); k++) {
                     for (int k2 = 0; k2 < arrTeste.get(i).size(); k2++) {
                         if (arrTeste.get(i).get(k2) != null) {
                             if (arrTeste.get(i).get(k2).equals(arrGramatica.get(j).get(k))){
-                                Geradores geradores = new Geradores();
                                 geradores.adicionarGeradores(arrGramatica.get(j).get(0));
                                 this.matrizTestePalavra[linhaAtual + 1][i] = geradores;
                             }
                         } else {
-                            Geradores geradores = new Geradores();
                             this.matrizTestePalavra[linhaAtual + 1][i] = geradores;
                         }
                     }
@@ -99,12 +98,12 @@ public class AlgorCYK {
                                 String combinacao = arrCaracteres.get(j2) + gerador2.getListaGeradores().get(j);
                                 str.add(combinacao);
                             }
-                        } else if (gerador2.getListaGeradores().get(i) == null){
+                        } else if (gerador2.getListaGeradores().get(j) == null){
                             for (int j2 = 0; j2 < arrCaracteres.size(); j2++) {
                                 String combinacao = gerador1.getListaGeradores().get(i) + arrCaracteres.get(j2);
                                 str.add(combinacao);
                             }
-                        } else if (gerador1.getListaGeradores().get(i) != null && gerador2.getListaGeradores().get(i) != null) {
+                        } else if (gerador1.getListaGeradores().get(i) != null && gerador2.getListaGeradores().get(j) != null) {
                             String combinacao = gerador1.getListaGeradores().get(i) + gerador2.getListaGeradores().get(j);
                             str.add(combinacao);
                         }
