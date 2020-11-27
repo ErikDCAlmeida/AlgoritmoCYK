@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JFileChooser;
@@ -25,7 +24,6 @@ public class App {
             palavra = JOptionPane.showInputDialog(null, "Digite sua palavra:");
             LerArquivo arquivo = new LerArquivo(caminho);
             AlgorCYK algorCYK = new AlgorCYK(palavra, arquivo.ler());
-            //System.out.println(algorCYK.getArrGramatica() + "\n" + Arrays.toString(algorCYK.getArrPalavra()));
 
             boolean resultado = algorCYK.verificarPalavra();
             String strResultado = "";
@@ -45,15 +43,13 @@ public class App {
             for (int i = algorCYK.getmatrizTestePalavra().length - 1; i >= 0; i--) {
                 stringB.append(i).append(": ").append(Arrays.toString(algorCYK.getmatrizTestePalavra()[i])).append("\n");
             }
-            String escolha = JOptionPane.showInputDialog(null, "O resultado do teste foi:\n\n" +
-                                                            "Resultado: " + strResultado + "\n\n" +
+            String escolha = JOptionPane.showInputDialog(null, "Resultado: " + strResultado + "\n\n" +
                                                             "Matriz do seu teste: \n" + stringB +
                                                             "OBS.: Para entender a matriz, as linhas/colunas que estão com {} podem ser desconsideradas.\n" +
-                                                            "O que está como 'null' são os espaços vazios.\n\n" +
+                                                            "O que está como 'null' é considerado como espaços vazios.\n\n" +
                                                             "Se não desejar fazer outro teste digite a letra 'n', " +
                                                             "caso contrário, qualquer outra letra ou símbolo continuará o programa.").toUpperCase();
             System.out.println("\n");
-            //System.out.println(Arrays.deepToString(algorCYK.getmatrizTestePalavra()));
             if (escolha.equals("N")) {
                 break;
             }

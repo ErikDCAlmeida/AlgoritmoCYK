@@ -1,7 +1,6 @@
 package algoritmocyk;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AlgorCYK {
     
@@ -46,10 +45,6 @@ public class AlgorCYK {
             this.testadorAuxiliar(i, (i + 1), this.arrCaracteresGramatica);
         }
 
-        //System.out.println("Array com caracteres do alfabeto: " + this.arrCaracteresGramatica);
-
-        //System.out.println(Arrays.deepToString(this.matrizTestePalavra));
-
         if (this.matrizTestePalavra[this.matrizTestePalavra.length-1][0] != null) {
             return this.matrizTestePalavra[this.matrizTestePalavra.length-1][0].contemElemento(this.arrGramatica.get(0).get(0));
         } else { 
@@ -67,7 +62,6 @@ public class AlgorCYK {
             }
             arrTeste.add(auxTeste);
         }
-        //System.out.println("??????Array Teste: " + arrTeste);
         for (int i = 0; i < arrTeste.size(); i++) {
             Geradores geradores = new Geradores();
             for (int j = 0; j < arrGramatica.size(); j++) {
